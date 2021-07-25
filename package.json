@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon",
-    "build": "node app.js"
+    "build": "node app.js",
+    "dev": "concurrently \"npm:dev:web\" \"npm:dev:server\"",
+    "dev:web": "webpack serve",
+    "dev:server": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -18,13 +21,40 @@
   },
   "homepage": "https://github.com/sagar-more/mern-todos#readme",
   "dependencies": {
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/icons": "^4.11.2",
+    "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "mongoose": "^5.13.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
-  }
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "concurrently": "^6.2.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "nodemon": "^2.0.12",
+    "webpack-dev-middleware": "^5.0.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-hot-middleware": "^2.25.0"
+  },
+  "browserslist": [
+    "last 3 chrome versions",
+    "last 3 opera versions",
+    "last 3 safari versions"
+  ]
 }

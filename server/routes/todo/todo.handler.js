@@ -3,7 +3,7 @@ const { validateID } = require("../../utils");
 
 const getHandler = async (req, res, next) => {
     try {
-        const todos = await todoSchema.find();
+        const todos = await todoSchema.find({ userID: req.body.id });
         res.json(todos);
     } catch (error) {
         next(error);

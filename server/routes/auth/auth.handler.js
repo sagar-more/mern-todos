@@ -1,4 +1,5 @@
 const register = require("../../models/user");
+const todoSchema = require("../../models/todo");
 const { createHmac } = require("crypto");
 const { checkEmailID, checkPassword } = require("../../utils");
 
@@ -17,14 +18,14 @@ const loginHandler = async (req, res, next) => {
     try {
         const { userEmail, password } = req.body;
         checkEmailID(userEmail);
-        checkPassword(password);
         const user = await register.findOne({ userEmail });
         if (!user) {
-            throw new Error(`Email ID/Password does not match or exist`);
+            throw new Error(`Incorrect Email ID or Password`);
         } else if (checkHashedPassword(password, user.password)) {
-            res.send(user);
+            const todos = await todoSchema.find({ userID: user.id });
+            res.send({ user, todos });
         } else {
-            throw new Error(`Email ID/Password does not match or exist`);
+            throw new Error(`Incorrect Email ID or Password`);
         }
     } catch (error) {
         next(error);

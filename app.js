@@ -4,7 +4,7 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8082;
 process.env.APP_PATH = process.env.APP_PATH || __dirname;
 
 const app = express();
@@ -15,7 +15,7 @@ const middlewares = require("./server/middlewares");
 app.use(morgan("common"));
 app.use(helmet());
 app.use(express.json());
-app.use(express.static("assets"));
+app.use(express.static("public"));
 
 app.use("/api", router);
 
